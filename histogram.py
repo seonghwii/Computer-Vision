@@ -14,36 +14,12 @@ if __name__ == "__main__":
     img = cv2.imread("img2.jpg", cv2.IMREAD_GRAYSCALE)
     gray = img.copy()
 
-    """
-    #histogram 구현
-    histo = [0]*256
-    for y in range(gray.shape[0]):
-        for x in range(gray.shape[1]):
-            histo[gray[y,x]] += 1
-
-    print(histo)
-    plt.plot(histo)
-    plt.show()
-    """
-    #numpy library 사용하여 histogram 구현
+    #numpy library 사용한 histogram 구현
     hist_src = np.bincount(img.ravel(), minlength=256)
     """bincount는 1차원만 받기 때문에 ravel()을 사용하여 1차원으로 변경시켜준다."""
 
-    #normalization(정규화)
-    """
-    histogram normalization 구현
-    histo = [0] * 256
-    for y in range(gray.shape[0]):
-        for x in range(gray.shape[1]):
-            histo[gray[y, x]] += (1/(gray.shape[0] * gray.shape[1]))
-
-    prob = 0
-    for i in range(len(histo)):
-        prob += histo[i]
-    print(prob)
-    """
     # openCV, numpy를 이용한 normalization 구현
-    # NORM_MINMAX : 다른 값들을 0(최솟값)과 1(최댓값) 사이의 값으로 변환하여 normalization 해주는 기능
+    """NORM_MINMAX : 다른 값들을 0(최솟값)과 1(최댓값) 사이의 값으로 변환하여 normalization 해주는 기능"""
     img_norm = cv2.normalize(img, None, 0, 255, cv2.NORM_MINMAX)
     print(img_norm)
     hist_norm = np.bincount(img_norm.ravel(), minlength=256)
@@ -64,13 +40,25 @@ if __name__ == "__main__":
     plt.subplot(1, 3, 3)
     plt.plot(hist_eq)
 
-    plt.show()
-
     cv2.imshow("img", img)
     cv2.imshow("img_norm", img_norm)
     cv2.imshow("img_eq", img_eq)
+
+    # 이진화 하는 방법
+
+    threshold = 100
+
+    thr, bin_img_0 = cv2.threshold(img_eq, threshold, 255, cv2.THRESH_BINARY)
+    thr_inv, bin_img_1 = cv2.threshold(img_eq, threshold, 255, cv2.THRESH_BINARY_INV)
+    thr_trc, bin_img_2 = cv2.threshold(img_eq, threshold, 255, cv2.THRESH_TRUNC)
+    thr_tzr, bin_img_3 = cv2.threshold(img_eq, threshold, 255, cv2.THRESH_TOZERO)
+    thr_tzr_inv, bin_img_4 = cv2.threshold(img_eq, threshold, 255, cv2.THRESH_TOZERO_INV)
+
+    plt.show()
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+
 
 
 
