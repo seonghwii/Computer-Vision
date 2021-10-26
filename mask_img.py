@@ -1,12 +1,12 @@
 """
-당근 부분만 남도록 이미지를 이진화한 예제
+[실습]
+당근 부분만 남도록 이미지를 이진화함
 """
 import cv2
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
 
-    #실습
     c_b_img = cv2.imread("../picture/c_b.png")
     grey = cv2.cvtColor(c_b_img, cv2.COLOR_BGR2GRAY)
 
