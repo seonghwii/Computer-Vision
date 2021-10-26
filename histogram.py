@@ -1,5 +1,5 @@
 """
-[히스토그램 구현]
+[히스토그램/이진화 구현]
 명암 값이 각각 영상에 몇 번 나타나는지 가시적으로 나타내기 위해 히스토그램을 사용한다.
 """
 
@@ -47,6 +47,7 @@ if __name__ == "__main__":
     # 이진화 하는 방법
 
     threshold = 100
+    """threshold(임계값)을 기준으로 밝으면 1, 아니면 0을 나타낸다."""
 
     thr, bin_img_0 = cv2.threshold(img_eq, threshold, 255, cv2.THRESH_BINARY)
     thr_inv, bin_img_1 = cv2.threshold(img_eq, threshold, 255, cv2.THRESH_BINARY_INV)
@@ -58,6 +59,17 @@ if __name__ == "__main__":
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+
+    """
+    cv2.THRESH_BINARY : threshold 초과 => maxval, 이하 => 0
+    cv2.THRESH_BINARY_INV : threshold 초과 => 0, 이하 => maxval
+    cv2.THRESH_TRUNC : threshold 초과 => thresh, 이하 => 변형 없음
+    cv2.THRESH_TOZERO : threshold 초과 => 변형 없음, 이하 => 0
+    cv2.THRESH_TOZERO_INV : threshold 초과 => 0, 이하 => 변형 없음
+    cv2.THRESH_OTSU : 오츠 알고리즘 적용
+        ==> 오츠 알고리즘) threshold를 기준으로 이진 분류된 픽셀의 비율의 차가 가장 작은 optimal T를 구하는 것
+        ==> 분산이 작을수록 균일성이 높다.   
+    """
 
 
 
