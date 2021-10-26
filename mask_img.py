@@ -1,5 +1,5 @@
 """
-당근 부분만 남도록 이미지를 이진화 예제
+당근 부분만 남도록 이미지를 이진화한 예제
 """
 import cv2
 import matplotlib.pyplot as plt
