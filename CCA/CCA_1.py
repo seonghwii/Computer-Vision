@@ -75,7 +75,7 @@ def dfs(bin_img, group_img, cur_x, cur_y, lable): #깊이
 
 if __name__ == '__main__':
 
-    # 손글씨 이미지 이진화 및 시각화
+    # 손글씨 이미지 이진화 및 시각화 [실습]
     src = cv2.imread("hand_write.jpg")
     gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
 
