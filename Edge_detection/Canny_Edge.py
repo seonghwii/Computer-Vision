@@ -11,7 +11,7 @@
 import cv2
 
 if __name__ == '__main__':
-    src = cv2.imread("Rena.png", cv2.IMREAD_GRAYSCALE)
+    src = cv2.imread("tower.JPG", cv2.IMREAD_GRAYSCALE)
 
 
 
